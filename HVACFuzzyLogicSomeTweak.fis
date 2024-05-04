@@ -1,0 +1,103 @@
+[System]
+Name='HVACFuzzyLogicSomeTweak'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=2
+NumRules=40
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='HedefSıcaklık'
+Range=[16 36]
+NumMFs=5
+MF1='CokSoguk':'trimf',[0 16 20]
+MF2='Soguk':'trimf',[16 20 24]
+MF3='Ilık':'trimf',[20 24 28]
+MF4='Sıcak':'trimf',[24 28 32]
+MF5='CokSıcak':'trimf',[28 32 36]
+
+[Input2]
+Name='OdaSıcaklıgı'
+Range=[16 36]
+NumMFs=5
+MF1='CokSoguk':'trimf',[0 16 20]
+MF2='Soguk':'trimf',[16 20 24]
+MF3='Ilık':'trimf',[20 24 28]
+MF4='Sıcak':'trimf',[24 28 32]
+MF5='CokSıcak':'trimf',[28 32 36]
+
+[Input3]
+Name='Nem'
+Range=[10 70]
+NumMFs=4
+MF1='Kuru':'trapmf',[-5 8.333 30 41.5]
+MF2='Serinletici':'trimf',[27 37 47]
+MF3='Rahatlatıcı':'trimf',[35 47 55]
+MF4='Nemli':'trapmf',[45 55 71.67 85]
+
+[Output1]
+Name='EvapRPM'
+Range=[0 1800]
+NumMFs=5
+MF1='min':'trimf',[0 0 600]
+MF2='yavas':'trimf',[300 600 900]
+MF3='mid':'trimf',[600 900 1200]
+MF4='hızlı':'trimf',[900 1200 1500]
+MF5='max':'trimf',[1200 1500 1800]
+
+[Output2]
+Name='KompresorRPM'
+Range=[0 1800]
+NumMFs=5
+MF1='min':'trimf',[0 0 600]
+MF2='yavas':'trimf',[300 600 900]
+MF3='mid':'trimf',[600 900 1200]
+MF4='hızlı':'trimf',[900 1200 1500]
+MF5='max':'trimf',[1200 1500 1800]
+
+[Rules]
+1 5 0, 5 0 (1) : 1
+1 5 3, 5 0 (1) : 1
+2 5 2, 3 0 (1) : 1
+1 5 1, 1 0 (1) : 1
+2 5 4, 5 0 (1) : 1
+2 5 3, 4 0 (1) : 1
+2 5 2, 3 0 (1) : 1
+2 5 1, 2 0 (1) : 1
+2 4 4, 5 0 (1) : 1
+2 4 3, 4 0 (1) : 1
+2 4 2, 3 0 (1) : 1
+2 4 1, 2 0 (1) : 1
+2 3 4, 5 0 (1) : 1
+2 3 3, 4 0 (1) : 1
+2 3 2, 3 0 (1) : 1
+2 3 1, 2 0 (1) : 1
+3 2 4, 5 0 (1) : 1
+3 2 3, 4 0 (1) : 1
+3 2 2, 3 0 (1) : 1
+3 2 1, 2 0 (1) : 1
+1 5 4, 0 5 (1) : 1
+1 5 3, 0 5 (1) : 1
+1 5 2, 0 5 (1) : 1
+1 5 1, 0 5 (1) : 1
+2 5 4, 0 4 (1) : 1
+2 5 3, 0 4 (1) : 1
+2 5 2, 0 4 (1) : 1
+2 5 1, 0 4 (1) : 1
+2 4 4, 0 4 (1) : 1
+2 4 3, 0 4 (1) : 1
+2 4 2, 0 4 (1) : 1
+2 4 1, 0 4 (1) : 1
+2 3 4, 0 3 (1) : 1
+2 3 3, 0 3 (1) : 1
+2 3 2, 0 3 (1) : 1
+2 3 1, 0 3 (1) : 1
+3 2 4, 0 3 (1) : 1
+3 2 3, 0 3 (1) : 1
+3 2 2, 0 3 (1) : 1
+3 2 1, 0 3 (1) : 1
